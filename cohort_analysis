@@ -20,7 +20,7 @@ The analysis focuses on:
 
 Results:
 
-![Retention Heatmap](..images/user_retention.png)
+![Retention Heatmap](images/user_retention.png)
 
 The heatmap shows a strong drop after the first week, stabilizing at 5-10%. The results are consistent accross the weeks
 and the pattern is typical for e-commerce from my knowing. However, since only October 2019 data is used we cannot infer purchasing trends with that limited data.
