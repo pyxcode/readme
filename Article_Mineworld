@@ -1,0 +1,82 @@
+MINEWORLD: A REAL-TIME AND OPEN-SOURCE INTERACTIVE WORLD MODEL ON MINECRAFT 
+https://arxiv.org/abs/2504.08388
+
+What is it?
+
+Video generqtive models qbility to leqrn commonsense knowledge from raw video --> Brooks et al., 2024
+
+Problem bottlneck form this mineworld, it the lqtent video representqtion encoded by viusql tokeniwers concst of q lqrge number of tokens 40k to 160k for 16 frames
+Not efficient at all consume a lot of energy and costly
+
+Visual and action tokenizers convert game states and actions into discret tokens, they are concatenated (combining more things into a single sequence) and fed into transformer decoder as the input.
+
+The transformers is then trained with an autoregressive objective.
+
+-> which is a training strategy where the model learns to predict the next element in a sequence, like for nlp. gpt etc
+
+P(x) = P(x₁) × P(x₂|x₁) × P(x₃|x₁, x₂) × ... × P(xₙ|x₁, ..., xₙ₋₁)
+
+It is powerful because it matches the causal floz of many real world sequences, transformers compatible.
+
+Auto regressive is NOT auto encoding
+the second one encodes the full input 
+Bert modelm VAEs etc
+
+Back to subject
+
+It is costly, and energy consuming so it can take time. BUT to accelerate the process, they add parallel decoding via SPATIAL DEPENDENCIES
+
+Instead of decoding each token sequentially, one by one, they identify spoatial groups of tokens that can be predicted in parallel.
+
+How to exploit spatial dependencies? 
+We can imagine in a image nearby pixels that have correlated patterns - they put it into groups 
+
+such as 
+Group 1: [t1, t2, t3] => decode in parallel
+Group 2: [t4, t5, t6]
+
+It is respecting the cqusql structure globally but relaxes it locally.
+
+Thisa strategy speed up the process by 3 with no significant loss of output.
+
+So to sumup; efficiency contrability
+code released and model weights
+
+CONTRIBUTION announced
+
+- new benchmark for world modeling
+- Novel parallel decoding algorithm - speedup inference
+- evalluation metrics for assessing the controllability
+
+2. framework
+
+We build MineWorld on the autoregressive Transformer (Vaswani et al., 2017),
+
+this framework needs to deal with two different type of data
+-> 2 tokenizers
+
+1. the state of the video, the world
+2. The action of the player which consist basically of the mouse movements and keyboard
+
+Both needs to be converted in a sequence of discrete tokens, as words for a llm but differently
+
+They do not do video tokenizers, they may try it in the future but not now.
+
+So each frame is compressed by 16 times, a resolution from 256 by 256 becomes 16 by 16, so 256 tokens to create from each frame.
+
+Why not using a video tokenizer ? easier and faster to process is my guess
+
+Video tokenizer would offer to have temporal compression, a kind of tokenizer that compress more images at the same time.
+
+Encoding action sequences as a single vector;
+
+1. They followed practises by Baker et al., 2022 by quantizeing camera angles into discrete bins - they simulate the continuous mouvement into a discrete more handable way for prediction.
+
+2. For discreete actions they ccategoriwe them into 7 exclusive classes each represented by a unique token.
+
+So each action is represented by a sequence of 11 tokens.
+
+They have also added special tokens to mark the boundaries of an action sequence, more specifically where the action starts and where the action stoped.
+It helps the model alos make the difference between the state of the world and the action.
+
+Just enormous. I love it
