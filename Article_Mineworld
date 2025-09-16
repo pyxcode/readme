@@ -1,5 +1,61 @@
-MINEWORLD: A REAL-TIME AND OPEN-SOURCE INTERACTIVE WORLD MODEL ON MINECRAFT 
-https://arxiv.org/abs/2504.08388
+Title: MINEWORLD: A REAL-TIME AND OPEN-SOURCE INTERACTIVE WORLD MODEL ON MINECRAFT
+Authors: Junliang Guo*, Yang Ye*, Tianyu He*, Haoyu Wu*, Yushu Jiang, Tim Pearce, Jiang Bian
+Affiliation: Microsoft Research
+Contact: {junliangguo, v-yangye, tianyuhe, v-haoywu}@microsoft.com
+Link: https://aka.ms/mineworld
+Publication date: April 2024 (arXiv: 2504.08388)
+(Use of IA - gpt 4.0 to summerize the analysis I had written)
+
+1. Problem
+Visual tokenizers for video generation produce very large token sequences (40k–160k for 16 frames), which makes autoregressive decoding slow, energy-consuming, and expensive. Current models are not efficient for real-time interaction.
+
+2. Main Contribution
+MineWorld introduces an autoregressive transformer-based world model for Minecraft. It adds a novel parallel decoding method based on spatial dependencies to speed up inference while maintaining output quality.
+
+3. Method
+
+Based on an autoregressive Transformer (Vaswani et al., 2017).
+Uses two tokenizers: one for world states (visual frames), one for player actions (mouse, keyboard).
+Each frame is downsampled from 256×256 to 16×16 (256 tokens).
+Actions are quantized into 11 discrete tokens, following Baker et al. (2022).
+State and action tokens are interleaved into one sequence.
+Model is trained autoregressively to predict next tokens based on previous ones.
+Parallel decoding groups spatially close tokens and predicts them in parallel.
+A modified causal mask allows intra-group attention and past-group attention, but not future-group attention.
+
+4. Results
+
+Trained on 10M video clips (160M frames) from VPT dataset.
+Total: 55B tokens, using 32 × 40GB A100 GPUs.
+Evaluation metrics: FVD, PSNR, LPIPS, SSIM.
+Parallel decoding provides up to 3× faster inference.
+Achieves 2–6 frames per second, compatible with real-time control.
+
+5. Limitations
+
+Trained only on Minecraft data, with a fixed downsampled resolution.
+Temporal context is limited by transformer input size; long-term dependencies may be lost.
+No external memory mechanism.
+Visual detail reduced due to spatial compression.
+
+6. What I retain
+
+Merges policy learning and world modeling in a single autoregressive framework.
+Interleaved sequences of states and actions let the model learn causality.
+Spatial grouping allows efficient parallel decoding.
+Adjusted attention mask helps balance training-inference mismatch.
+
+7. Personal note
+
+This model is far from a learning World model. The methods used and tricks to handle complexity are very interesting but not transposable to any other situation. It is a fix environment, with fixed posssibility and it is not learning anything for the outworld without training.
+
+It is an pertinent exercice, but sadly of little use in the future. What's more they have used Oasis and its inference code to benchmark against itm and the results are better but not tremendeously better (2.58 fps for 500m param against 3.18fps for 700m param or 5.91 fps for 300m param for MineWorld).
+Pertinent, but it does not advance my work a lot.
+
+
+-------------------------------------------------------------------------------------------------------
+
+MINEWORLD: A REAL-TIME AND OPEN-SOURCE INTERACTIVE WORLD MODEL ON MINECRAFT
 
 What is it?
 
@@ -21,6 +77,7 @@ It is powerful because it matches the causal floz of many real world sequences, 
 Auto regressive is NOT auto encoding
 the second one encodes the full input 
 Bert modelm VAEs etc
+
 
 Back to subject
 
@@ -79,4 +136,108 @@ So each action is represented by a sequence of 11 tokens.
 They have also added special tokens to mark the boundaries of an action sequence, more specifically where the action starts and where the action stoped.
 It helps the model alos make the difference between the state of the world and the action.
 
-Just enormous. I love it
+Generally the modele uses the auto regressive prediction as in GPT 2 or 4 - that use all the previous tokens to predict the next one
+
+The combined approach of state + actions is interesting: it is treating the states - pictures and actions as equivalent tokenwise.
+
+So the model can learn the dynimic of games and the behavior of the player in the samne sequence. 
+
+ why does it work?
+ By taking both as tokens help the model create links between action AND states
+
+ By doing this, it recreates a kind of causality impression that will help the model predict - if I do that, this is likely to be the outcome.
+
+ So this model is at the same time a mix of a policy model as well as a world model; it predicts future actions from the actual state and predicts future state based on actual actions.
+
+ They call this conbination the ; enterleaved structure.
+
+ Parallel Decoding 
+
+ real time = number of action per minute
+ 2 frames per second would be nereded for they model for amateur real time interactions
+
+ Visual atuoregressive models can provide high fidelity restults for image and video generation tasks - but the sequential nature is a bottlneck
+
+ to deal with, they used diagonal decoding, they leverage spatial dependencies betzeen adjacent image tokens to speedup the decoding 
+
+ r = (h × w)/(h + w − 1)
+
+ Discrepancy between training and inference
+
+ during training => the model sees the true sequence of tokens
+ It is prediciting the next token, using the "ground-truth pas tokens""
+
+During inference, also called generation
+The model must predict token by token, using its own previous prediction
+
+So if a mistake is done early -> it will propagate or amplify, because futur prediction rely on the previous ones.
+
+
+To face that issue, they changed the regular mask (which is a matrix of 1 and 0 that tells the model which positions is allowed to attend to or us - example, it permit to vorbid the attention to future tokens)
+
+In this case the mask is likely to have give attention in a way that each group of token that are predicted at the same time can attend to each other, can attend to the last group but NOt the futures groups of tokens.
+
+This configuration allows to lower the issues mostly caused by the parallel decoding alrogithm which is a structure not usual for the standard causal attention mask that goes one tokern at a time.
+
+They finetuned an existing model because the existing methods were based on training a model from scratch - which is more time consuming and they chose not to. Lformer as an exemple
+
+
+More recently ZipAR, did quite a similar thing that they did but for image generatioun and not video generation. The latest present more complex challenges due to error accumnulation across frames.
+
+
+EVALUATION
+
+to asses the performance of world models in minecraft environment they assess video quality and constollability quality of generation results.
+
+1. dataset construction and preprocessing
+
+They used the VPT dataset- baker et al., 2022 - pairs of recorded game playing videos and corresponding actions
+They filtered
+
+results 10M video clips - 160M fram - validate and test on 1k clips
+
+resize, reduce computation cost
+same ratio as original
+
+55B tokens total in training set
+
+Evaluation metrics
+Frechet Video Distance ´
+(FVD) (Unterthiner et al., 2018), Peak Signal-to-Noise Ratio (PSNR) (Hore & Ziou, 2010), Learned Perceptual
+Image Patch Similarity (LPIPS) (Zhang et al., 2018), and Structural Similarity Index Measure (SSIM) (Wang
+et al., 2004).
+
+
+n 32 NVIDIA 40G A100 GPUs
+
+
+Effect of parallel decoding
+Larger mdoels perform better with parallel decoding even zithout finetuning - up to 3x
+
+training model from scratch with parallel attention mask may lead to faster convergence and lower overall training costs
+
+
+Conclusion
+
+first open-source interactive wolrd model for minecraft
+
+using open dataset of game states and corresponding actions
+
+tokenize both modalities and train an AR transfotmers decoder using the interleav ed sequence of state and action tokens as input,
+To support and make it more efficient - they explotied redundancy between adjacent image tokens and introduce a parallel decoinding alrgorithm,
+
+and 2-6 frames per second enables real time interaction with pro gamne players.
+
+Limitations annouces 
+- exclusively trained on minecraft data - at a fixed downsampled resolutionm limitin its ability to generaliwe to other video domains.
+
+the downsampling process lead to loss of fine grained details in game states - bullshit ca un peu
+
+Fundamental limitation of transformers
+maximum input lenght = x k tokens
+
+IT MEANS that the transformers model used as a context windo specific to xk tokens - anythin beyond that is cut off.
+
+IF related game states are far apart, the model can,t see the earlier one - this can breaks temporal consistency - it can't remember what was built, can't track long terme goals
+
+Here attention is computed over the entire sequence, no external memory.
