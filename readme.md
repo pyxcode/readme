@@ -16,7 +16,7 @@ I’m fascinated by autonomy, both human and artificial.
 
 My goal is to contribute to technologies that make exploration sustainable and meaningful, wherever we will go next.
 
-#Examples of projects
+# [Examples of projects]
 
 ## [CallX](https://callx.fr)
 AI sales coach that analyzes real sales calls using Whisper and GPT to provide structured feedback and actionable insights for teams.  
