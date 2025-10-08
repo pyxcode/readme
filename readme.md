@@ -23,13 +23,13 @@ My goal is to contribute to technologies that make exploration sustainable and m
 - AI sales coach that analyzes real sales calls using Whisper and GPT to provide structured feedback and actionable insights for teams.  
 - Built with **FastAPI**, **Python**, and **OpenAI APIs**.  
 
-## [IFRD – Institut Français de Recherche Dermatologique](https://github.com/louanbardou/ifrd)
+## [IFRD – Institut Français de Recherche Dermatologique](https://ifrd.fr)
 - Founder 
 - Student-led dermatology research project focused on melanoma detection.  
 - Trained a **ConvNeXt-Large** model in **PyTorch** on 30k skin images, reaching 82% accuracy.  
 - Currently paused to focus on my studies.  
 
-## [Kaggle Competition – Random Forest Classifier](https://github.com/louanbardou/kaggle-rf)
+## [Kaggle Competition – Random Forest Classifier](https://www.kaggle.com/competitions/dsaib-2025-forest-cover-type/leaderboard)
 - Winner
 - Built a **Random Forest Classifier** that ranked **1st** in a Kaggle competition.  
 - Explored feature engineering, hyperparameter tuning, and ensemble learning.  
