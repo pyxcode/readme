@@ -19,22 +19,22 @@ My goal is to contribute to technologies that make exploration sustainable and m
 # Examples of projects
 
 ## [CallX](https://callx.fr)
-Founder
-AI sales coach that analyzes real sales calls using Whisper and GPT to provide structured feedback and actionable insights for teams.  
-Built with **FastAPI**, **Python**, and **OpenAI APIs**.  
+- Founder
+- AI sales coach that analyzes real sales calls using Whisper and GPT to provide structured feedback and actionable insights for teams.  
+- Built with **FastAPI**, **Python**, and **OpenAI APIs**.  
 
 ## [IFRD – Institut Français de Recherche Dermatologique](https://github.com/louanbardou/ifrd)
-Founder
-Student-led dermatology research project focused on melanoma detection.  
-Trained a **ConvNeXt-Large** model in **PyTorch** on 30k skin images, reaching 82% accuracy.  
-Currently paused to focus on my studies.  
+- Founder 
+- Student-led dermatology research project focused on melanoma detection.  
+- Trained a **ConvNeXt-Large** model in **PyTorch** on 30k skin images, reaching 82% accuracy.  
+- Currently paused to focus on my studies.  
 
 ## [Kaggle Competition – Random Forest Classifier](https://github.com/louanbardou/kaggle-rf)
-Winner
-Built a **Random Forest Classifier** that ranked **1st** in a Kaggle competition.  
-Explored feature engineering, hyperparameter tuning, and ensemble learning.  
+- Winner
+- Built a **Random Forest Classifier** that ranked **1st** in a Kaggle competition.  
+- Explored feature engineering, hyperparameter tuning, and ensemble learning.  
 
 ## [Finotor](https://finotor.com)
-Contributor 
-Worked on product analytics and automation for an accounting SaaS, including data pipelines and dashboarding.  
-Focused on improving financial visibility and process efficiency.
+- Contributor 
+- Worked on product analytics and automation for an accounting SaaS, including data pipelines and dashboarding.  
+- Focused on improving financial visibility and process efficiency.
