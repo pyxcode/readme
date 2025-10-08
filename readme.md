@@ -15,3 +15,22 @@ Current Research Interests :
 I’m fascinated by autonomy, both human and artificial.
 
 My goal is to contribute to technologies that make exploration sustainable and meaningful, wherever we will go next.
+
+#Examples of projects
+
+## [CallX](https://callx.fr)
+AI sales coach that analyzes real sales calls using Whisper and GPT to provide structured feedback and actionable insights for teams.  
+Built with **FastAPI**, **Python**, and **OpenAI APIs**.  
+
+## [IFRD – Institut Français de Recherche Dermatologique](https://github.com/louanbardou/ifrd)
+Student-led dermatology research project focused on melanoma detection.  
+Trained a **ConvNeXt-Large** model in **PyTorch** on 30k skin images, reaching 82% accuracy.  
+Currently paused to focus on my studies.  
+
+## [Kaggle Competition – Random Forest Classifier](https://github.com/louanbardou/kaggle-rf)
+Built a **Random Forest Classifier** that ranked **1st** in a Kaggle competition.  
+Explored feature engineering, hyperparameter tuning, and ensemble learning.  
+
+## [Finotor](https://github.com/louanbardou/finotor)
+Worked on product analytics and automation for an accounting SaaS, including data pipelines and dashboarding.  
+Focused on improving financial visibility and process efficiency.
