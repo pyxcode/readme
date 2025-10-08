@@ -6,11 +6,11 @@ I’m currently studying Data Science and Artificial Intelligence at École Poly
 
 Current Research Interests :
 
-Self-Supervised Learning
-Multimodal Perception
-Causal Reasoning
-Materials in Extreme Conditions (cryogenic temperatures, radiation)
-Space Systems and Communication
+- Self-Supervised Learning
+- Multimodal Perception
+- Causal Reasoning
+- Materials in Extreme Conditions (cryogenic temperatures, radiation)
+- Space Systems and Communication
 
 I’m fascinated by autonomy, both human and artificial.
 
