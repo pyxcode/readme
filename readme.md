@@ -14,14 +14,13 @@ Current Research Interests :
 
 I’m fascinated by autonomy, both human and artificial.
 
-My goal is to contribute to technologies that make exploration sustainable and meaningful, wherever we will go next.
+My goal is to contribute to technologies deepening human understanding of the world.
 
 # Examples of projects
 
 ## [CallX](https://callx.fr)
 - Founder
-- AI sales coach that analyzes real sales calls using Whisper and GPT to provide structured feedback and actionable insights for teams.  
-- Built with **FastAPI**, **Python**, and **OpenAI APIs**.  
+- AI sales coach that analyzes real sales calls using Whisper and NLP to provide structured feedback and actionable insights for teams.   
 
 ## [IFRD – Institut Français de Recherche Dermatologique](https://ifrd.fr)
 - Founder 
