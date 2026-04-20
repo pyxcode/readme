@@ -1,36 +1,22 @@
-Hi, I’m Louan Bardou
+## Louan BARDOU
 
-I’m currently studying Data Science and Artificial Intelligence at École Polytechnique (MX25), after completing a degree in Mechanical and Materials Engineering at the Université de Technologie de Compiègne.
+Visiting Researcher at UCSF (Rauschecker–Sugrue Lab) working on machine learning for clinical neuroimaging and signal processing.
 
-Current Research Interests :
+Current work focuses on longitudinal trajectory prediction using the ABCD Study dataset and DBS connectivity fingerprints to validate the destination network convergence hypothesis. Particularly interested in using self-supervised learning to improve the robustness of neural decoding under physical hardware constraints.
 
-- Self-Supervised Learning
-- Multimodal Perception
-- Causal Reasoning
-- Materials in Extreme Conditions (cryogenic temperatures, radiation)
+Dual background in Materials Engineering (UTC) and Computer Science (École Polytechnique, MX25).
 
-I’m fascinated by autonomy, both human and artificial.
+**→ [louanbardou.com](https://louanbardou.com)**
 
-My goal is to contribute to technologies deepening human understanding of the world.
+---
 
-# Examples of projects
+### Research
 
-## [CallX](https://callx.fr)
-- Founder
-- AI sales coach that analyzes real sales calls using Whisper and NLP to provide structured feedback and actionable insights for teams.   
+**[Weak Supervision for White Matter Lesion Detection](https://louanbardou.com/research/leukoaraiosis-detection)**
+Swin UNETR pipeline for leukoaraiosis detection across 11,868 adolescents (ABCD Study) — no voxel-level annotations, extreme class imbalance, 21-site heterogeneity.
 
-## [IFRD – Institut Français de Recherche Dermatologique](https://ifrd.fr)
-- Founder 
-- Student-led dermatology research project focused on melanoma detection.  
-- Trained a **ConvNeXt-Large** model in **PyTorch** on 30k skin images, reaching 82% accuracy.  
-- Currently paused to focus on my studies.  
+**[DBS Connectivity Fingerprint Analysis](https://louanbardou.com/research/dbs-connectivity-fingerprints)**
+SIFT2-weighted tractography fingerprints from 116 stimulation configurations in 5 DBS patients. Tests the destination network convergence hypothesis with 7 ML classifiers.
 
-## [Kaggle Competition – Random Forest Classifier](https://www.kaggle.com/competitions/dsaib-2025-forest-cover-type/leaderboard)
-- Winner
-- Built a **Random Forest Classifier** that ranked **1st** in a Kaggle competition.  
-- Explored feature engineering, hyperparameter tuning, and ensemble learning.  
-
-## [Finotor](https://finotor.com)
-- Contributor 
-- Worked on product analytics and automation for an accounting SaaS, including data pipelines and dashboarding.  
-- Focused on improving financial visibility and process efficiency.
+**[Multi-Scale Temporal Masking for Self-Supervised fMRI Learning](https://louanbardou.com/research/brain-jepa)**
+Extensions to Brain-JEPA: hierarchical masking at three temporal scales and VICReg covariance regularization to prevent representational collapse.
